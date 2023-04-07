@@ -1,0 +1,70 @@
+CREATE TABLE client(
+	id SERIAL NOT NULL PRIMARY KEY,
+	user_name VARCHAR(250) NOT NULL,
+	password VARCHAR(12) NOT NULL,
+	first_name VARCHAR(250) NOT NULL,
+	last_name VARCHAR(250) NOT NULL,
+	email VARCHAR(250) UNIQUE,
+	tel_number INTEGER NOT NULL
+	
+     );
+CREATE TABLE shopping_session(
+	id SERIAL NOT NULL PRIMARY KEY,
+	total DECIMAL,
+	created_at TIMESTAMP,
+	modified_at TIMESTAMP,
+	user_id INTEGER REFERENCES client(id) ON DELETE CASCADE
+	
+     );
+
+CREATE TABLE product(
+	id SERIAL NOT NULL PRIMARY KEY,
+	name VARCHAR(250) NOT NULL,
+	category VARCHAR(250) NOT NULL,
+	price DECIMAL
+	
+     );
+
+CREATE TABLE cart_item(
+	id SERIAL NOT NULL PRIMARY KEY,
+	total DECIMAL,
+	created_at TIMESTAMP,
+	modified_at TIMESTAMP,
+	session_id INTEGER REFERENCES shopping_session(id) ON DELETE CASCADE,
+	product_id INTEGER REFERENCES product(id) ON DELETE CASCADE
+	
+     );
+CREATE TABLE payment(
+	id SERIAL NOT NULL PRIMARY KEY,
+	total DECIMAL,
+	name VARCHAR(250) NOT NULL,
+	created_at TIMESTAMP,
+	modified_at TIMESTAMP,
+	status VARCHAR(250) NOT NULL
+	
+     );
+CREATE TABLE order_details(
+	id SERIAL NOT NULL PRIMARY KEY,
+	total DECIMAL,
+	name VARCHAR(250) NOT NULL,
+	created_at TIMESTAMP,
+	modified_at TIMESTAMP,
+	price DECIMAL,
+	client_id INTEGER REFERENCES client(id) ON DELETE CASCADE,
+	payment_id INTEGER REFERENCES payment(id) ON DELETE CASCADE
+	
+     );
+
+CREATE TABLE order_items (
+	id SERIAL NOT NULL PRIMARY KEY,
+	created_at TIMESTAMP,
+	modified_at TIMESTAMP,
+	order_id INTEGER REFERENCES order_details(id) ON DELETE CASCADE,
+	product_id INTEGER REFERENCES product(id) ON DELETE CASCADE
+	
+     );
+
+
+
+
+
