@@ -28,12 +28,16 @@ aside {
     height: 100%;
 }
 
+button {
+    background: #fff;
+}
+
 ul {
     list-style: none;
 }
 
 .header-1 {
-    color: #fff;
+    color: #F8F4FF;
     position: relative;
     text-align: center;
     margin: 0.7rem;
@@ -46,7 +50,7 @@ ul {
     background-color: black;
     overflow: hidden;
     transition: width 0.2s linear;
-    box-shadow: 0 8rem 10rem rgb(255, 254, 254);
+    box-shadow: 0 8rem 10rem rgb(255, 255, 255);
     font-family: 'Poppins', sans-serif;
 }
 
